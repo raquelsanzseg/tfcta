@@ -59,5 +59,7 @@ locals {
 
   total_users = merge(var.users, var.more_users)
 
+  # my_total_users = merge(admin_users, regular_users)
+  my_total_users = merge(local.admin_users, local.regular_users, local.admin_more_users, local.users_is_admin)
 }
 
