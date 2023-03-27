@@ -11,11 +11,11 @@ resource "aws_instance" "test_import" {
 }
 
 
- 
+
 # Security group: allow ssh and ICMP ping from allowed external subnets
 resource "aws_security_group" "sec_ssh_ping_import" {
   vpc_id = data.aws_vpc.def_vpc.id
-  name   = "sec-ssh-ping-import"
+  name   = "sg_${local.name_suffix}"
   ingress {
     description = "SSH from specific addresses"
     from_port   = 22
@@ -43,15 +43,32 @@ resource "aws_security_group" "sec_ssh_ping_import" {
   }
 }
 
-resource "aws_instance" "importada_rafa" {
- tags = {
-  project = var.project
- }
- 
+resource "aws_instance" "ec2_imported" {
+  instance_type = "t3.micro"
+  ami           = "ami-0779c326801d5a843"
+  vpc_security_group_ids = [aws_security_group.sec_ssh_ping_import.id]
 
- lifecycle {
- ignore_changes = [
-   tags
- ]
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+    prevent_destroy = true
   }
+
+  # security_groups = [
+  #   "sg_proj99-dev-08a"
+  # ]
+
 }
+# resource "aws_instance" "importada_rafa" {
+#  tags = {
+#   project = var.project
+#  }
+
+
+#  lifecycle {
+#  ignore_changes = [
+#    tags
+#  ]
+#   }
+# }

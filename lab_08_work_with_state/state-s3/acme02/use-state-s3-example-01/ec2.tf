@@ -9,6 +9,7 @@ resource "aws_instance" "test1" {
   # key_name               = var.key_name
   tags = {
     Name = "test-${local.name_suffix}"
+    test = "test1"
   }
 }
 
