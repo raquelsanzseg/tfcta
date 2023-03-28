@@ -25,7 +25,7 @@ variable "environment" {
 
 variable "project" {
   type    = string
-  default = "proj88"
+  default = "raquel"
 }
 
 variable "lab_number" {

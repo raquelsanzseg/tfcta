@@ -18,6 +18,10 @@ output "ips_privadas_de_server_priv" {
   value = aws_instance.server_priv[*].private_ip
 }
 
+output "ips_publicas_de_server_pub_otra_vpc" {
+  value = aws_instance.server_pub_otra_vpc[*].public_ip
+}
+
 
 
 

@@ -52,7 +52,7 @@ resource "aws_instance" "ec2_imported" {
     ignore_changes = [
       tags
     ]
-    prevent_destroy = true
+    # prevent_destroy = true
   }
 
   # security_groups = [
