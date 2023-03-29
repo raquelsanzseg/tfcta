@@ -36,3 +36,8 @@ output "web2_public_ip" {
   description = "Public IP of server 2"
   value       = module.web2.instance_public_ip
 }
+
+output "vpc_arn" {
+  description = "arn of VPC"
+  value = module.my_web_vpc.vpc_arn
+}
